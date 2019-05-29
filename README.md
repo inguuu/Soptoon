@@ -5,4 +5,4 @@
 https://xd.adobe.com/spec/12b5b616-bf84-46c4-7139-8c0617a29467-6484/
 
 # Api
-https://drive.google.com/drive/u/0/folders/1oPpv30_uG3pyloIUyofGNGhQXhSM6OmM
+https://drive.google.com/open?id=1fXXdlsPSdnAZgxinRHUQXxbVAlPLaW4A
