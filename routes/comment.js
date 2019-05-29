@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-const crypto = require('crypto-promise');
 const upload = require('../config/multer');
 var moment = require('moment');
 
@@ -31,7 +30,7 @@ router.get('/', async (req, res) => {
     const getAllCommentQuery = "SELECT * FROM comment ORDER BY comment_datetime";
     const getAllCommentlResult = await db.queryParam_None(getAllCommentQuery);
 
-    if (!getAllCommentlResult ) {
+    if (!getAllCommentlResult) {
         res.status(200).send(defaultRes.successFalse(statusCode.DB_ERROR, resMessage.SELECT_COMMENT_FAILED));
     } else { //쿼리문이 성공했을 때
         res.status(200).send(defaultRes.successTrue(statusCode.OK, resMessage.SELECT_COMMENT_SUCCESS, getAllCommentlResult));
