@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
         const buf = await crypto.randomBytes(64);
         const salt = buf.toString('base64');
         const hashedPw = await crypto.pbkdf2(req.body.user_pw.toString(), salt, 1000, 32, 'SHA512');
+        
 
         const signupResult = await db.queryParam_Parse(signupQuery, [req.body.user_id, req.body.user_name, hashedPw.toString('base64'), salt]);
         if (!signupResult) {

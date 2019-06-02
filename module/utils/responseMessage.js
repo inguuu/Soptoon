@@ -39,6 +39,11 @@ module.exports = {
   SELECT_COMMENT_SUCCESS: "댓글 조회 성공",
   SELECT_COMMENT_FAILED: "댓글 조회 실패",
 
+  SELECT_EPISODE_SUCCESS: "에피소드 조회 성공",
+  SELECT_EPISODE_FAILED: "에피소드 조회 실패",
+  INSERT_EPISODE_SUCCESS: "에피소드 등록 성공",
+  INSERT_EPISODE_FAILED: "에피소드 등록 실패",
+
   SELECT_WEBTOON_SUCCESS: "웹툰 조회 성공",
   SELECT_WEBTOON_FAILED: "웹툰 조회 실패",
   INSERT_WEBTOON_SUCCESS: "웹툰 등록 성공",
@@ -50,6 +55,11 @@ module.exports = {
   INSERT_EPISODE_SUCCESS: "에피소드 등록 성공",
   INSERT_EPISODE_FAILED: "에피소드 등록 실패",
 
+  SELECT_CONTENT_SUCCESS: "내용 조회 성공",
+  SELECT_CONTENT_FAILED: "내용 조회 실패",
+  INSERT_CONTENT_SUCCESS: "내용 등록 성공",
+  INSERT_CONTENT_FAILED: "내용 등록 실패",
+
   INSERT_LIKE_SUCCESS: "좋아요 추가 성공",
   INSERT_LIKE_FAILED: "좋아요 추가 실패",
   DELETE_LIKE_SUCCESS: "좋아요 삭제 성공",
@@ -57,6 +67,13 @@ module.exports = {
 
   SELECT_PICTURES_SUCCESS: "사진 조회 성공",
   SELECT_PICTURES_FAILED: "사진 조회 실패",
+
+  NOT_FOUND_WEBTOON_ID: "웹툰 ID가 없습니다.",
+  NOT_FOUND_EPISODE_ID: "에피소드 ID가 없습니다.",
+  NOT_FOUND_CONTENT_ID: "내용 ID가 없습니다.",
+
+  INCREASE_SUCCESS: "조회수 증가 성공.",
+  INCREASE_FAILED: "조회수 증가 실패.",
 
   NOT_EQUAL_NUMBER: "등록할 이미지 수와 내용의 수가 같아야 합니다.",
 
