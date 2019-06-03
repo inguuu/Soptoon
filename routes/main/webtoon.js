@@ -11,7 +11,7 @@ const db = require('../../module/pool');
 router.get('/:category', async (req, res) => {
 
     if (req.params.category == 1) {// 인기순
-        const getWebtoonQuery = "SELECT * FROM webtoon ORDER BY webtoon_like";
+        const getWebtoonQuery = "SELECT * FROM webtoon WHERE done=0 ORDER BY webtoon_like";
         const getWebtoonlResult = await db.queryParam_None(getWebtoonQuery);
 
         if (!getWebtoonlResult) {
@@ -21,7 +21,7 @@ router.get('/:category', async (req, res) => {
         }
 
     } else if (req.params.category == 2) {// 신규
-        const getWebtoonQuery = "SELECT * FROM webtoon ORDER BY createdAt";
+        const getWebtoonQuery = "SELECT * FROM webtoon WHERE done=0 ORDER BY createdAt";
         const getWebtoonlResult = await db.queryParam_None(getWebtoonQuery);
 
         if (!getWebtoonlResult) {
