@@ -78,4 +78,5 @@ module.exports = {
   AT_LEAST_IMAGES: "썸네일 이미지와 내용 이미지는 최소한 하나씩은 있어야 합니다.",
   NOT_EQUAL_NUMBER: "등록할 이미지 수와 내용의 수가 같아야 합니다.",
 
+  NOT_FOUND_EPISODE_ID_USER: "에피소드 ID나 유저정보가 없습니다."
 };
