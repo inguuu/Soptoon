@@ -4,12 +4,15 @@ var router = express.Router();
 const upload = require('../config/multer');
 var moment = require('moment');
 
+const authUtil = require("../module/utils/authUtils");
+const jwtUtils = require('../module/jwt');
+
 const defaultRes = require('../module/utils/utils');
 const statusCode = require('../module/utils/statusCode');
 const resMessage = require('../module/utils/responseMessage');
 const db = require('../module/pool');
 
-router.post('/', upload.array('comment_img'), async (req, res) => {
+router.post('/', upload.array('comment_img'), authUtil.isLoggedin, async (req, res) => {
     console.log(req.body);
     const findIdxQuery = "SELECT * FROM episode WHERE episode_idx=?";
     const findIdxResult = await db.queryParam_Parse(findIdxQuery, req.body.episode_idx);

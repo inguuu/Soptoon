@@ -7,7 +7,9 @@ const statusCode = require('../../module/utils/statusCode');
 const resMessage = require('../../module/utils/responseMessage');
 const db = require('../../module/pool');
 
-router.post('/', async (req, res) => {
+const authUtil = require("../../module/utils/authUtils");
+const jwtUtils = require('../../module/jwt');
+router.post('/', authUtil.isLoggedin, async (req, res) => {
 
     const insertLikeListQuery =
         'INSERT INTO likelist (user_idx,webtoon_idx) VALUES (?,?)';
@@ -15,7 +17,7 @@ router.post('/', async (req, res) => {
 
     const insertTransaction = await db.Transaction(async (connection) => {
         const insertLikeListResult = await connection.query(insertLikeListQuery,
-            [req.body.user_idx, req.body.webtoon_idx])
+            [req.decoded.idx, req.body.webtoon_idx])
         const updateLikeResult = await connection.query(updateLikeQuery, [req.body.webtoon_idx]);
     });
     if (!insertTransaction) {
@@ -28,14 +30,14 @@ router.post('/', async (req, res) => {
 
 
 
-router.delete('/', async (req, res) => {
+router.delete('/', authUtil.isLoggedin, async (req, res) => {
 
     const deleteLikeListQuery =
         'DELETE FROM likelist WHERE user_idx=? AND webtoon_idx=?';
     const updateLikeQuery = 'UPDATE webtoon SET webtoon_like = webtoon_like-1 WHERE webtoon_idx = ?';
     const deleteTransaction = await db.Transaction(async (connection) => {
         const deleteLikeListResult = await db.queryParam_Parse(deleteLikeListQuery,
-            [req.body.user_idx, req.body.webtoon_idx])
+            [req.decoded.idx, req.body.webtoon_idx])
         const updateLikeResult = await connection.query(updateLikeQuery, [req.body.webtoon_idx]);
     });
     if (!deleteTransaction) {

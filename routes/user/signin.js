@@ -8,6 +8,8 @@ const statusCode = require('../../module/utils/statusCode');
 const resMessage = require('../../module/utils/responseMessage');
 const db = require('../../module/pool');
 
+const jwtUtils = require('../../module/jwt');
+
 router.post('/', async (req, res) => {
     const selectUserQuery = 'SELECT * FROM user WHERE user_id = ?'
     const selectUserResult = await db.queryParam_Parse(selectUserQuery, req.body.user_id);
@@ -21,7 +23,8 @@ router.post('/', async (req, res) => {
         const hashedEnterPw = await crypto.pbkdf2(req.body.user_pw.toString(), salt, 1000, 32, 'SHA512');
 
         if (selectUserResult[0].user_pw == hashedEnterPw.toString('base64')) {
-            res.status(200).send(defaultRes.successTrue(statusCode.OK, resMessage.SIGNIN_SUCCESS, selectUserResult[0].user_idx));
+            const tokens = jwtUtils.sign(selectUserResult[0]);
+            res.status(200).send(defaultRes.successTrue(statusCode.OK, resMessage.SIGNIN_SUCCESS, tokens));
         } else {
             console.log("비밀번호가 일치하지 않음");
             res.status(200).send(defaultRes.successFalse(statusCode.OK, resMessage.NOT_CORRECT_USERINFO));

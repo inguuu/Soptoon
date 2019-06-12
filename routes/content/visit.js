@@ -15,7 +15,6 @@ router.put('/', async (req, res) => {
     if (findIdxResult[0] == null) {// 에피소드 아이디가 없으면 실패
         res.status(200).send(defaultRes.successFalse(statusCode.NO_CONTENT, resMessage.NOT_FOUND_EPISODE_ID));
     } else {
-
         let renewalVisit = ++(findIdxResult[0].visit);
         const increaseQuery = "UPDATE episode SET visit = ? WHERE episode_idx= ?";
         const increaseResult = await db.queryParam_Parse(increaseQuery, [renewalVisit, req.body.episode_idx]);
