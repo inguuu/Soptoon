@@ -12,13 +12,17 @@ const authUtil = require("../../module/utils/authUtils");
 const jwtUtils = require('../../module/jwt');
 router.get('/:webtoon_idx', authUtil.checkLogin, async (req, res) => {
 
+    const getWebtoonQuery =
+        "SELECT * FROM webtoon WHERE webtoon_idx = ?";
+    const getWebtoonResult = await db.queryParam_Parse(getWebtoonQuery, [req.params.webtoon_idx]);
     const getEpisodesQuery =
         "SELECT * FROM episode WHERE webtoon_idx = ?";
     const getEpisodesResult = await db.queryParam_Parse(getEpisodesQuery, [req.params.webtoon_idx]);
-    if (!getEpisodesResult) {//DB오류처리
+    
+    if (!getWebtoonResult) {//DB오류처리
         res.status(200).send(defaultRes.successFalse(statusCode.DB_ERROR, resMessage.SELECT_EPISODE_FAILED));
     } else {
-        if (getEpisodesResult[0] == null) {// 에피소드 아이디가 없으면 실패
+        if (getWebtoonResult[0] == null) {// 에피소드 아이디가 없으면 실패
             res.status(200).send(defaultRes.successFalse(statusCode.NO_CONTENT, resMessage.NOT_FOUND_WEBTOON_ID));
         } else {
             if (req.decoded == "NL") {//로그인이 안되어있다면 그냥 모든 정보만 

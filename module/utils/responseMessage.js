@@ -80,7 +80,7 @@ module.exports = {
 
   NOT_FOUND_EPISODE_ID_USER: "에피소드 ID나 유저정보가 없습니다.",
 
-   NULL_VALUE: "필요한 값이 없습니다",
+  NULL_VALUE: "필요한 값이 없습니다",
 
   INVALID_TOKEN: "잘못된 형식의 토큰입니다.",
   EMPTY_TOKEN: "토큰값이 존재하지 않습니다.",
@@ -88,6 +88,7 @@ module.exports = {
   EMPTY_REFRESH_TOKEN: "재발급 토큰이 존재하지 않습니다.",
   CREATE_TOKEN: "토큰 발급 완료.",
   REFRESH_TOKEN: "토큰 재발급 완료.",
+  NOT_CORRECT_REFRESH_TOKEN_USER: "토큰과 일치하는 유저가 없습니다.",
 
   NO_SELECT_AUTHORITY: "조회 권한 없음.",
   USER_SELECTED: "회원 조회 성공."
